@@ -38,11 +38,11 @@
       padding: 0 15px;
       position: relative;
       font-weight: bold !important;
+      justify-content: space-between;
     }
     nav ul {
       list-style: none;
       display: flex;
-      flex: 1;
       margin: 0;
       padding-left: 0;
     }
@@ -60,63 +60,11 @@
       background: #004c99;
     }
 
-    /* Submenu */
-    nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      background: #0066cc;
-      min-width: 200px;
-      z-index: 100;
-      flex-direction: column;
-    }
-    nav ul li:hover ul {
-      display: block;
-    }
-    nav ul li ul li a {
-      font-weight: normal;
-      padding: 10px 15px;
-    }
-
     /* Right section */
     .right-section {
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-
-    /* Thanh tìm kiếm ẩn */
-    .search-box {
-      position: relative;
-      display: none;
-    }
-    .search-box input {
-      padding: 6px 10px;
-      border-radius: 3px;
-      border: none;
-    }
-
-    /* Gợi ý */
-    .suggestions {
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: white;
-      border: 1px solid #ccc;
-      width: 200px;
-      max-height: 200px;
-      overflow-y: auto;
-      display: none;
-      z-index: 200;
-    }
-    .suggestion-item {
-      padding: 6px 10px;
-      cursor: pointer;
-      color: black;
-    }
-    .suggestion-item:hover {
-      background: #f0f0f0;
     }
 
     .flags img {
@@ -143,36 +91,6 @@
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    /* Responsive */
-    .menu-toggle {
-      display: none;
-      font-size: 24px;
-      cursor: pointer;
-      padding: 10px;
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        flex-direction: column;
-        width: 100%;
-        background: #0066cc;
-      }
-      nav ul.show {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-        color: white;
-      }
-      .right-section {
-        margin-left: auto;
-      }
     }
   </style>
 <script>
@@ -207,34 +125,13 @@
     <img src="https://hungyengenzso.github.io/vi/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(12).png">
   </div>
 
-  <!-- Menu -->
+  <!-- Menu đã được sửa đổi -->
   <nav>
-    <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
     <ul>
       <li><a href="https://hungyengenzso.github.io/vi/home" target="_blank"><i class="fa fa-home"></i></a></li>
-      <li>
-        <a href="javascript:void(0)">Tổng quát</a>
-        <ul>
-          <li><a href="https://hungyengenzso.github.io/vi/gioithieu" target="_blank">Giới thiệu</a></li>
-          <li><a href="https://hungyengenzso.github.io/vi/nhanvat" target="_blank">Các lãnh đạo cấp cao của Hưng Yên</a></li>
-          <li><a href="https://hungyengenzso.github.io/vi/thuvienmedia" target="_blank">Thư viện Media</a></li>
-        </ul>
-      </li>
-      <li><a href="https://hungyengenzso.github.io/vi/kinhte" target="_blank">Kinh tế</a></li>
-      <li><a href="https://hungyengenzso.github.io/vi/dulich" target="_blank">Du lịch</a></li>
-      <li><a href="https://hungyengenzso.github.io/vi/dsvls" target="_blank">Di sản & Lịch sử</a></li>
-      <li><a href="https://hungyengenzso.github.io/vi/atvln" target="_blank">Ẩm thực & Làng nghề</a></li>
-      <li><a href="https://hungyengenzso.github.io/vi/minigame" target="_blank">MiniGame</a></li>
-      <li><a href="https://hungyengenzso.github.io/vi/amnhac" target="_blank">Âm nhạc</a></li>
-      <li><a href="https://hungyengenzso.github.io/vi/lienhe" target="_blank">Liên hệ</a></li>
     </ul>
 
     <div class="right-section">
-      <i class="fas fa-search" id="search-icon" style="cursor:pointer;"></i>
-      <div class="search-box" id="search-box">
-        <input type="text" id="search" placeholder="Tìm kiếm...">
-        <div id="suggestions" class="suggestions"></div>
-      </div>
       <div class="flags">
         <img src="https://hungyengenzso.github.io/vi/vn.png" alt="VN">
         <img src="https://hungyengenzso.github.io/vi/en.png" alt="EN">
@@ -275,73 +172,14 @@
       bannerLinks[currentBanner].classList.add('active');
     }, 5000);
 
-    // Responsive menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('nav ul');
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('show');
+    // Click cờ VN -> mở ở tab mới
+    document.querySelector('.flags img[alt="VN"]').addEventListener('click', () => {
+      window.open("https://hungyengenzso.github.io/vi/home", "_blank");
     });
 
-    // Ẩn/hiện thanh tìm kiếm
-    const searchIcon = document.getElementById('search-icon');
-    const searchBox = document.getElementById('search-box');
-    searchIcon.addEventListener('click', () => {
-      if (searchBox.style.display === 'block') {
-        searchBox.style.display = 'none';
-      } else {
-        searchBox.style.display = 'block';
-      }
-    });
-
-    // Dữ liệu menu cho gợi ý
-    const searchInput = document.getElementById('search');
-    const suggestionsBox = document.getElementById('suggestions');
-
-    const menuItems = [
-      { name: "Trang chủ", link: "https://hungyengenzso.github.io/vi/home" },
-      { name: "Giới thiệu", link: "https://hungyengenzso.github.io/vi/gioithieu" },
-      { name: "Lãnh đạo", link: "https://hungyengenzso.github.io/vi/lanhdao" },
-      { name: "Các lãnh đạo cấp cao của Hưng Yên", link: "https://hungyengenzso.github.io/vi/nhanvat" },
-      { name: "Kinh tế", link: "#" },
-      { name: "Du lịch", link: "https://hungyengenzso.github.io/vi/dulich" },
-      { name: "Di sản & Lịch sử", link: "https://hungyengenzso.github.io/vi/dsvls" },
-      { name: "Ẩm thực & Làng nghề", link: "https://hungyengenzso.github.io/vi/atvln" },
-      { name: "MiniGame", link: "https://hungyengenzso.github.io/vi/minigame" },
-      { name: "Âm nhạc", link: "https://hungyengenzso.github.io/vi/amnhac" },
-      { name: "Thư viện Media", link: "https://hungyengenzso.github.io/vi/thuvienmedia" },
-      { name: "Liên hệ", link: "https://hungyengenzso.github.io/vi/lienhe" },
-    ];
-
-    // Hiển thị gợi ý khi gõ
-    searchInput.addEventListener('input', () => {
-      const keyword = searchInput.value.toLowerCase().trim();
-      suggestionsBox.innerHTML = '';
-      if (keyword === '') {
-        suggestionsBox.style.display = 'none';
-        return;
-      }
-      const filtered = menuItems.filter(item => item.name.toLowerCase().includes(keyword));
-      if (filtered.length === 0) {
-        suggestionsBox.style.display = 'none';
-        return;
-      }
-      filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'suggestion-item';
-        div.textContent = item.name;
-        div.addEventListener('click', () => {
-          window.open(item.link, '_blank');
-        });
-        suggestionsBox.appendChild(div);
-      });
-      suggestionsBox.style.display = 'block';
-    });
-
-    // Ẩn gợi ý khi click ra ngoài
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.search-box')) {
-        suggestionsBox.style.display = 'none';
-      }
+    // Click cờ EN -> mở ở tab mới
+    document.querySelector('.flags img[alt="EN"]').addEventListener('click', () => {
+      window.open("https://hungyengenzso.github.io/en/home", "_blank");
     });
   </script>
 
@@ -355,16 +193,6 @@
     setInterval(sendHeight, 100);
     window.addEventListener('resize', sendHeight);
     window.addEventListener('load', sendHeight);
-
-  // Click cờ VN -> mở ở tab mới
-  document.querySelector('.flags img[alt="VN"]').addEventListener('click', () => {
-    window.open("https://hungyengenzso.github.io/vi/home", "_blank");
-  });
-
-  // Click cờ EN -> mở ở tab mới
-  document.querySelector('.flags img[alt="EN"]').addEventListener('click', () => {
-    window.open("https://hungyengenzso.github.io/en/home", "_blank");
-  });
 </script>
 
 </body>
