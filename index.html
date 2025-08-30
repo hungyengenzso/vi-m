@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hưng Yên ~ GENZ</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap&subset=vietnamese" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto';
+      background: #fff3b6; 
+      color: #111;
+    }
+
+
+    .top {
+      padding: 20px;
+      background: #d70e0b;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      color: white;
+    }
+    .search-container {
+      position: relative;
+      margin: 0 10px;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 10px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+    }
+    .search-bar i {
+      margin-right: 10px;
+    }
+    .search-input {
+      background: transparent;
+      border: none;
+      color: white;
+      width: 100%;
+      font-family: 'Roboto';
+      font-size: 16px;
+      outline: none;
+    }
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 12px;
+      margin-top: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+    }
+    .search-result-item {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: #333;
+    }
+    .search-result-item:hover {
+      background-color: #f5f5f5;
+    }
+    .search-result-item i {
+      margin-right: 10px;
+      color: #d70e0b;
+    }
+    .no-results {
+      padding: 12px 15px;
+      color: #777;
+      text-align: center;
+    }
+
+
+    .hero {
+      margin: 10px 10px 0;
+      background: #fff3b6; 
+      border-radius: 20px;
+      text-align: center;
+      padding: 10px 10px;
+      color: #d70e0b;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .hero .badge {
+      display: inline-block;
+      background: #d70e0b;
+      color: #fff3b6;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 35px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      letter-spacing: 0px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+
+    .content {
+      padding: 20px 30px;
+    }
+    
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #d70e0b;
+      margin: 0;
+    }
+    
+    .language-flags {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .flag {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    
+    .flag:hover {
+      transform: scale(1.1);
+    }
+    
+    .flag img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .tool {
+      text-align: center;
+    }
+    .icon-tile {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      color: #fff3b6;
+      margin: 0 auto 10px;
+      background: #d70e0b;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .tool label {
+      font-weight: 700;
+      display: block;
+      color: #d70e0b;
+    }
+    .tool small {
+      display: block;
+      color: #555;
+      font-size: 10px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    a:active .icon-tile { transform: scale(.96); }
+  </style>
+</head>
+<body>
+
+  <div class="top">
+    <div class="search-container">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" class="search-input" placeholder="Hưng Yên ~ GENZ">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <div class="hero">
+      <div class="badge">HƯNG YÊN GENZ</div>
+      <h1>KẾT NỐI SỐ, SÁNG TẠO SỐ</h1>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="section-header">
+      <div class="section-title">Khám phá</div>
+      <div class="language-flags">
+        <div class="flag" title="Tiếng Việt">
+          <img src="https://hungyengenzso.github.io/vi-m/vn.png" alt="VN">
+        </div>
+        <div class="flag" title="English">
+          <img src="https://hungyengenzso.github.io/vi-m/en.png" alt="EN">
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid">
+
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/home" target="_blank">
+          <div class="icon-tile"><i class="fas fa-home"></i></div>
+          <label>Trang chủ</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/gioithieu" target="_blank">
+          <div class="icon-tile"><i class="fas fa-info-circle"></i></div>
+          <label>Giới thiệu</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/nhanvat" target="_blank">
+          <div class="icon-tile"><i class="fas fa-users"></i></div>
+          <label>Các lãnh đạo cấp cao</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/kinhte" target="_blank">
+          <div class="icon-tile"><i class="fas fa-chart-line"></i></div>
+          <label>Kinh tế</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/dulich" target="_blank">
+          <div class="icon-tile"><i class="fas fa-map-marked-alt"></i></div>
+          <label>Du lịch</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/dsvls" target="_blank">
+          <div class="icon-tile"><i class="fas fa-landmark"></i></div>
+          <label>Di sản & Lịch sử</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/atvln" target="_blank">
+          <div class="icon-tile"><i class="fas fa-utensils"></i></div>
+          <label>Ẩm thực & Làng nghề</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/minigame" target="_blank">
+          <div class="icon-tile"><i class="fas fa-gamepad"></i></div>
+          <label>MiniGame</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/amnhac" target="_blank">
+          <div class="icon-tile"><i class="fas fa-music"></i></div>
+          <label>Âm nhạc</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/thuvienmedia" target="_blank">
+          <div class="icon-tile"><i class="fas fa-photo-video"></i></div>
+          <label>Thư viện Media</label>
+        </a>
+      </div>
+      
+      <div class="tool">
+        <a href="https://hungyengenzso.github.io/vi-m/lienhe" target="_blank">
+          <div class="icon-tile"><i class="fas fa-envelope"></i></div>
+          <label>Liên hệ</label>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    const searchData = [
+      { 
+        name: "Trang chủ", 
+        keywords: ["trang chủ", "home", "trangchu", "chính"], 
+        url: "https://hungyengenzso.github.io/vi-m/home",
+        icon: "fas fa-home"
+      },
+      { 
+        name: "Giới thiệu", 
+        keywords: ["giới thiệu", "gioi thieu", "about", "thông tin"], 
+        url: "https://hungyengenzso.github.io/vi-m/gioithieu",
+        icon: "fas fa-info-circle"
+      },
+      { 
+        name: "Các lãnh đạo cấp cao", 
+        keywords: ["lãnh đạo", "lanh dao", "leader", "cấp cao", "cap cao", "nhân vật", "nhan vat"], 
+        url: "https://hungyengenzso.github.io/vi-m/nhanvat",
+        icon: "fas fa-users"
+      },
+      { 
+        name: "Kinh tế", 
+        keywords: ["kinh tế", "kinh te", "economy", "economic"], 
+        url: "https://hungyengenzso.github.io/vi-m/kinhte",
+        icon: "fas fa-chart-line"
+      },
+      { 
+        name: "Du lịch", 
+        keywords: ["du lịch", "du lich", "travel", "tour", "địa điểm", "dia diem"], 
+        url: "https://hungyengenzso.github.io/vi-m/dulich",
+        icon: "fas fa-map-marked-alt"
+      },
+      { 
+        name: "Di sản & Lịch sử", 
+        keywords: ["di sản", "di san", "heritage", "lịch sử", "lich su", "history"], 
+        url: "https://hungyengenzso.github.io/vi-m/dsvls",
+        icon: "fas fa-landmark"
+      },
+      { 
+        name: "Ẩm thực & Làng nghề", 
+        keywords: ["ẩm thực", "am thuc", "food", "làng nghề", "lang nghe", "craft village"], 
+        url: "https://hungyengenzso.github.io/vi-m/atvln",
+        icon: "fas fa-utensils"
+      },
+      { 
+        name: "MiniGame", 
+        keywords: ["minigame", "game", "trò chơi", "tro choi", "giải trí", "giai tri"], 
+        url: "https://hungyengenzso.github.io/vi-m/minigame",
+        icon: "fas fa-gamepad"
+      },
+      { 
+        name: "Âm nhạc", 
+        keywords: ["âm nhạc", "am nhac", "music", "bài hát", "bai hat", "nhạc", "nhac"], 
+        url: "https://hungyengenzso.github.io/vi-m/amnhac",
+        icon: "fas fa-music"
+      },
+      { 
+        name: "Thư viện Media", 
+        keywords: ["thư viện", "thu vien", "media", "hình ảnh", "hinh anh", "video", "photo"], 
+        url: "https://hungyengenzso.github.io/vi-m/thuvienmedia",
+        icon: "fas fa-photo-video"
+      },
+      { 
+        name: "Liên hệ", 
+        keywords: ["liên hệ", "lien he", "contact", "góp ý", "gop y", "phản hồi", "phan hoi"], 
+        url: "https://hungyengenzso.github.io/vi-m/lienhe",
+        icon: "fas fa-envelope"
+      }
+    ];
+
+
+    document.querySelector('.flag img[alt="VN"]').closest('.flag').addEventListener('click', () => {
+      window.open("https://hungyengenzso.github.io/vi-m/", "_blank");
+    });
+
+    document.querySelector('.flag img[alt="EN"]').closest('.flag').addEventListener('click', () => {
+      window.open("https://hungyengenzso.github.io/en-m/", "_blank");
+    });
+
+
+    const searchInput = document.querySelector('.search-input');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      
+      if (query.length === 0) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+
+      const results = searchData.filter(item => {
+
+        if (item.name.toLowerCase().includes(query)) return true;
+        
+
+        return item.keywords.some(keyword => keyword.includes(query));
+      });
+      
+
+      displayResults(results);
+    });
+
+    searchInput.addEventListener('focus', function() {
+      if (this.value.trim().length > 0) {
+        searchResults.style.display = 'block';
+      }
+    });
+
+
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+
+    function displayResults(results) {
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">Không tìm thấy kết quả phù hợp</div>';
+        searchResults.style.display = 'block';
+        return;
+      }
+      
+      searchResults.innerHTML = '';
+      results.forEach(item => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'search-result-item';
+        resultElement.innerHTML = `
+          <i class="${item.icon}"></i>
+          <span>${item.name}</span>
+        `;
+        
+        resultElement.addEventListener('click', () => {
+          window.open(item.url, '_blank');
+          searchResults.style.display = 'none';
+          searchInput.value = '';
+        });
+        
+        searchResults.appendChild(resultElement);
+      });
+      
+      searchResults.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
