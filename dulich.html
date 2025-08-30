@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Du lịch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #d70202;
+            --light-yellow: #fff3b6;
+            --dark-brown: #5a3921;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding-top: 140px;
+            color: #333;
+            line-height: 1.5;
+            background-color: #f5f5f5;
+        }
+        
+        .banner-container {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--light-yellow);
+            color: var(--primary-red);
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-tour {
+            background-color: var(--primary-red);
+            color: white;
+            margin-top: 10px;
+        }
+        
+        .btn-tour:hover {
+            background-color: #b00000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 30px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-red);
+            margin: 10px auto;
+        }
+        
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 0.95rem;
+        }
+        
+        /* Tour Section */
+        .tour-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .tour-card {
+            flex: 1 1 280px;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .tour-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        
+        .tour-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .tour-content {
+            padding: 15px;
+        }
+        
+        .tour-title {
+            color: var(--dark-brown);
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+        }
+        
+        .tour-duration {
+            display: inline-block;
+            background-color: var(--light-yellow);
+            color: var(--primary-red);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+        
+        .tour-highlights {
+            margin: 10px 0;
+            padding-left: 15px;
+        }
+        
+        .tour-highlights li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .tour-price {
+            font-weight: bold;
+            color: var(--primary-red);
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        
+        /* Booking Section */
+        .booking-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .booking-title {
+            color: var(--primary-red);
+            margin: 0 0 10px;
+            border-bottom: 1px solid var(--light-yellow);
+            padding-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .booking-steps {
+            margin: 15px 0;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background-color: var(--primary-red);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+        
+        .step-content h4 {
+            margin: 0 0 5px;
+            color: var(--dark-brown);
+            font-size: 1rem;
+        }
+        
+        .step-content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Travel Tips */
+        .tips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .tip-card {
+            flex: 1 1 280px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tip-card h3 {
+            color: var(--dark-brown);
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--light-yellow);
+            padding-bottom: 8px;
+        }
+        
+        .best-time {
+            margin-top: 15px;
+        }
+        
+        .time-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .time-icon {
+            color: var(--primary-red);
+            font-size: 1rem;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        
+        .contact-info {
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .contact-icon {
+            color: var(--primary-red);
+            font-size: 1rem;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        
+        /* Cultural Value Section */
+        .value-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+        
+        .value-item {
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            color: var(--primary-red);
+            border-left: 3px solid var(--light-yellow);
+            padding-left: 10px;
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+        }
+        
+        .value-content {
+            padding-left: 15px;
+        }
+        
+        .value-content ul {
+            padding-left: 15px;
+            margin: 0;
+        }
+        
+        .value-content li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer styles from previous code */
+        .footer-content {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 20px 0;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            color: var(--light-yellow);
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--light-yellow);
+            padding-bottom: 8px;
+        }
+        
+        .contact-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item i {
+            margin-right: 6px;
+            color: var(--light-yellow);
+            font-size: 0.9rem;
+        }
+        
+        .rating-options {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .rating-option {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .rating-option input {
+            margin-right: 4px;
+        }
+        
+        .submit-btn {
+            background-color: white;
+            color: var(--primary-red);
+            border: none;
+            padding: 5px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 10px 0;
+            background-color: var(--primary-red);
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .social-icons {
+            margin: 10px 0 5px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0 6px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--light-yellow);
+        }
+        
+        /* Info row styles */
+        .info-row {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .info-row img {
+            width: 40%;
+            aspect-ratio: 16/7;
+            object-fit: cover;
+        }
+
+        .info-content {
+            background-color: var(--light-yellow);
+            padding: 15px;
+            flex: 1;
+        }
+
+        .info-content h3 {
+            color: var(--primary-red);
+            margin-top: 0;
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--primary-red);
+            padding-bottom: 5px;
+        }
+        
+        /* Contact grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        /* Video Gallery */
+        .video-gallery {
+            margin: 30px 0;
+        }
+        
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .video-wrapper {
+            flex: 1 1 45%;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-wrapper:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-wrapper iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .load-more-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 25px;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .load-more-btn:hover {
+            background-color: #b00000;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .tour-card, .tip-card {
+                flex: 1 1 100%;
+            }
+            
+            section {
+                padding: 20px 0;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .footer-section {
+                flex: 0 0 100%;
+            }
+            
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-row img {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-wrapper {
+                flex: 1 1 100%;
+            }
+        }
+        
+        .iframe-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 520px; /* chỉ phần trên cùng */
+            z-index: 9999;
+            pointer-events: none; /* cho phép click xuyên */
+        }
+
+        .iframe-layer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            pointer-events: auto; /* vẫn click được bên trong iframe */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Iframe trên cùng -->
+    <div class="iframe-layer">
+        <iframe src="https://hungyengenzso.github.io/vi/top"></iframe>
+    </div>
+        
+<script>
+function updatePadding() {
+  const screenWidth = window.innerWidth; 
+  const padding = screenWidth * 0.2; 
+  document.body.style.paddingTop = 100 + padding + "px";
+}
+
+window.addEventListener("load", updatePadding);
+window.addEventListener("resize", updatePadding);
+</script>
+            <div class="video-gallery">
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1ATSG9nkYUQcndWXUM7esive4B_3sx6l8/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/19ITl5g1XrGWm_dFScTvKZ-OGiqQlYqKN/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos1">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1i47UscQrqe082YRbhVP6GV2SDUEnIoLD/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1WD09sVeb_R29okN3MAfY2Bk8CCAOl0io/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos2">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1brqgZW1U0kVtTV74s2O04P1tU7AsySv6/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1lhSFg2NdysbgLSm8HZkjlHoCTSvaagaK/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos3">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/14biri8cdaXsSJzc1CiindWtYQd6GfGvb/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1GzrZWwJQyq0xtaoji9-zexiRfmk6v9EA/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos4">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1doMrkJOb0xziO0n3arVu0FfoxaDc4vmf/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1S0C2-oCWkzjImY3MnP4QDraDr1Tu1zjh/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos5">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1U9r46y9qGDZsGxOtPZ5qMTqc0f0E5-su/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/14QSX9VspTeIP8X-IxvKooHtRtu7xwlnT/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos6">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/18nJLBJvzhF__YHPydYoA49Nv-32HYaTA/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1A-ZiipYJ5Y-Ii4QaTUZVpMo47O35POVA/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos7">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1Kefye5L8ketO38CpXl-xRX6T1Hg5YeJc/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1JXIRGU0v8w18nrd1cNQ2uVVixL1mAfNS/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos8">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1Xk5-yr0_yah7f2yc7GAah7HevLeTr2Vu/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/12APnPuHZ99vqFOWXp3E6vUjRUcoBLv4Q/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos9">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1ASCS8Wau0INiiLM24B7bfZTxoQCiTOjj/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1GblhW5Eu4EAmcvK3_DsjTxYTxXo7F30K/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos10">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1cFdfFnGehP1jd6TcOEkP9G9oL4RPB254/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/19xBBgIsQUsQQpCNWrgikKm1m_nRJ_oej/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos11">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/15fMuCvXAe09RXmKNHzyR5QnmqIbhNrKI/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/11_qx_mkxAwYYAFBu4A1RHmSVfFDwCcDH/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos12">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1e7XlH2iSNVynnrffZ4Z00M0W3Z24vib5/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/12x27qJ_v-5RXsrlJOcf6Uaa3f5ndsDxR/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos13">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1C3rXHWnkzMkDcytPIlOtmwDvSpczzL-e/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1iWkzwNOzwmYLNnG97dSRyUZR_GQzpUQF/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos14">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1sUcwA1_T2SaxIBH_PMp-irnmfFqG19lj/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <button class="load-more-btn" onclick="loadMoreVideos()">Xem thêm video</button>
+            </div>
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-water"></i> GIỚI THIỆU TUYẾN DU LỊCH</h2>
+            <p class="intro-text">Tuyến du lịch tâm linh Sông Hồng là hành trình văn hóa - tín ngưỡng liên vùng, kết nối những vùng đất "địa linh nhân kiệt" dọc theo dòng sông mẹ của nền văn minh lúa nước</p>
+            
+            <!-- Video Gallery -->
+
+            
+            <div class="info-row">
+                <img src="https://cdn-images.vtv.vn/thumb_w/640/2023/1/28/vnapotalphuthokhaihoidenmauaucomodauchocachoatdonglehoinam20236559765-1674883232247248638948.jpg" alt="Ý nghĩa văn hóa">
+                <div class="info-content">
+                    <h3>Ý NGHĨA VĂN HÓA - TÂM LINH</h3>
+                    <p>Tuyến du lịch tâm linh Sông Hồng mang ý nghĩa văn hóa sâu sắc, kết nối các di tích lịch sử, đền chùa cổ dọc theo dòng sông Hồng hùng vĩ. Hành trình này không chỉ là một chuyến đi mà còn là cơ hội để du khách tìm hiểu về lịch sử, văn hóa và tín ngưỡng của người Việt.</p>
+                    <ul>
+                        <li>Bảo tồn, gìn giữ và phát huy các giá trị văn hóa tâm linh truyền thống</li>
+                        <li>Gắn kết những vùng đất thiêng mang đậm dấu ấn "địa linh nhân kiệt"</li>
+                        <li>Tạo cơ hội tìm hiểu chiều sâu tâm linh và đạo lý "uống nước nhớ nguồn"</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="value-container">
+                <div class="value-item">
+                    <h3 class="value-title">Ý NGHĨA LỊCH SỬ - BẢN SẮC DÂN TỘC</h3>
+                    <div class="value-content">
+                        <ul>
+                            <li>Hành trình xuyên suốt qua các vùng văn hóa lớn của châu thổ sông Hồng</li>
+                            <li>Khơi dậy niềm tự hào dân tộc, khẳng định bản sắc văn hóa Việt</li>
+                            <li>Giáo dục thế hệ trẻ ý thức gìn giữ di sản</li>
+                            <li>Tái hiện lịch sử phát triển của vùng đồng bằng Bắc Bộ</li>
+                            <li>Kết nối các di tích lịch sử quan trọng từ thời Hùng Vương đến nay</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="value-item">
+                    <h3 class="value-title">Ý NGHĨA KINH TẾ - XÃ HỘI</h3>
+                    <div class="value-content">
+                        <ul>
+                            <li>Mô hình du lịch liên kết vùng giữa các địa phương</li>
+                            <li>Tạo việc làm cho người dân địa phương</li>
+                            <li>Kêu gọi đầu tư tư nhân theo mô hình PPP</li>
+                            <li>Phát triển cơ sở hạ tầng du lịch đồng bộ</li>
+                            <li>Quảng bá hình ảnh văn hóa Việt Nam ra thế giới</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tours">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-route"></i> HÀNH TRÌNH TÂM LINH</h2>
+            <p class="intro-text">Khám phá các tour du lịch tâm linh đặc sắc dọc theo dòng Sông Hồng</p>
+            
+            <div class="tour-container">
+                <div class="tour-card">
+                    <img src="https://cdn3.ivivu.com/2022/12/pho-hien-hung-yen-ivivu-1.jpg" alt="Tour 1 ngày" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">Hà Nội - Bắc Hưng Yên: Hành trình khởi đầu</h3>
+                        <span class="tour-duration"><i class="fas fa-clock"></i> 1 ngày</span>
+                        <ul class="tour-highlights">
+                            <li>Tham quan Phủ Tây Hồ - trung tâm tín ngưỡng thờ Mẫu</li>
+                            <li>Khám phá Bắc Hưng Yên với quần thể đền chùa cổ</li>
+                            <li>Viếng đền Chử Đồng Tử - một trong "Tứ bất tử"</li>
+                            <li>Thưởng thức ẩm thực đặc sản vùng Bắc Hưng Yên</li>
+                            <li>Trải nghiệm văn hóa tâm linh đặc sắc</li>
+                        </ul>
+                        <div class="tour-price">Giá: 1.200.000 VNĐ/khách</div>
+
+                    </div>
+                </div>
+                
+                <div class="tour-card">
+                    <img src="https://baonamdinh.vn/file/e7837c02816d130b0181a995d7ad7e96/022023/1_20230202153741.png" alt="Tour 2 ngày" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">Hà Nội - Bắc Hưng Yên - Nam Hưng Yên</h3>
+                        <span class="tour-duration"><i class="fas fa-clock"></i> 2 ngày 1 đêm</span>
+                        <ul class="tour-highlights">
+                            <li>Tham quan đền Mẫu Phố Hiến - di tích quốc gia đặc biệt</li>
+                            <li>Viếng đền Đồng Bằng - nơi thờ vua cha Bát Hải</li>
+                            <li>Khám phá chùa Keo - kiến trúc độc đáo thế kỷ 17</li>
+                            <li>Trải nghiệm đời sống văn hóa làng quê Bắc Bộ</li>
+                            <li>Thưởng thức đặc sản 2 vùng Bắc - Nam Hưng Yên</li>
+                        </ul>
+                        <div class="tour-price">Giá: 2.500.000 VNĐ/khách</div>
+
+                    </div>
+                </div>
+                
+                <div class="tour-card">
+                    <img src="https://mekongasean.vn/stores/news_dataimages/mekongaseanvn/072023/20/20/sh6-6259.jpg" alt="Tour văn hóa" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">Hành trình vòng cung Sông Hồng</h3>
+                        <span class="tour-duration"><i class="fas fa-clock"></i> 4 ngày 3 đêm</span>
+                        <ul class="tour-highlights">
+                            <li>Hà Nội: Phủ Tây Hồ, chùa Trấn Quốc</li>
+                            <li>Bắc Hưng Yên: Đền Mẫu, đền Chử Đồng Tử</li>
+                            <li>Nam Hưng Yên: Đền Đồng Bằng, chùa Keo</li>
+                            <li>Trải nghiệm văn hóa tâm linh đa dạng</li>
+                            <li>Khám phá ẩm thực đặc sắc 3 vùng miền</li>
+                        </ul>
+                        <div class="tour-price">Giá: 5.800.000 VNĐ/khách</div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tour Cồn Vành -->
+            <div class="tour-container" style="margin-top: 30px;">
+                <div class="tour-card">
+                    <img src="https://www.vietnamairlines.com/~/media/SEO-images/2025%20SEO/Traffic%20TV/khu-du-lich-bien-con-vanh/con-vanh-la-mot-trong-nhung-bai-tam-duoc-yeu-thich.jpg?la=vi-VN" alt="Tour Cồn Vành" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">CHƯƠNG TRÌNH TOUR DU LỊCH BIỂN CỒN VÀNH (2N1Đ)</h3>
+                        <span class="tour-duration"><i class="fas fa-clock"></i> 2 ngày 1 đêm</span>
+                        <h4 style="margin: 10px 0 5px; color: var(--dark-brown);">NGÀY 1: KHÁM PHÁ CỒN VÀNH – TRẢI NGHIỆM BIỂN CẢ</h4>
+                        <ul class="tour-highlights">
+                            <li>07h00: Khởi hành từ Hà Nội / Hưng Yên</li>
+                            <li>11h00: Đến Khu du lịch sinh thái biển Cồn Vành</li>
+                            <li>11h30: Nhận phòng nghỉ (homestay/nhà sàn/resort ven biển)</li>
+                            <li>12h00: Ăn trưa với các món đặc sản biển</li>
+                            <li>14h00: Tự do tắm biển, tham quan rừng ngập mặn Bàng</li>
+                            <li>17h30: Ngắm hoàng hôn trên biển</li>
+                            <li>18h30: Dùng tiệc BBQ hải sản ngoài bãi biển</li>
+                            <li>20h00: Đốt lửa trại, giao lưu văn nghệ</li>
+                        </ul>
+                        
+                        <h4 style="margin: 10px 0 5px; color: var(--dark-brown);">NGÀY 2: TRẢI NGHIỆM NGHỀ BIỂN – MUA SẮM ĐẶC SẢN</h4>
+                        <ul class="tour-highlights">
+                            <li>05h30: Ngắm bình minh, tản bộ trên bãi biển</li>
+                            <li>06h00: Trải nghiệm "Một ngày làm ngư dân"</li>
+                            <li>08h00: Ăn sáng đặc sản cháo ngao hoặc bún cá</li>
+                            <li>09h30: Tham quan chợ hải sản ven biển</li>
+                            <li>11h00: Trả phòng, ăn trưa nhẹ</li>
+                            <li>13h00: Khởi hành về Hà Nội / Hưng Yên</li>
+                            <li>17h00: Kết thúc hành trình</li>
+                        </ul>
+                        
+                        <div class="tour-price">Gói A: 1 ngày (đi - về) - 650.000đ/người</div>
+                        <div class="tour-price">Gói B: 2N1Đ - 1.290.000đ/người (bao gồm ăn, nghỉ, trải nghiệm)</div>
+
+                    </div>
+                </div>
+                
+<div class="tour-card">
+    <img src="https://tecco.com.vn/wp-content/uploads/2023/12/swan-lake-park-ecopark-cong-vien-ho-thien-nga.jpg" alt="Tour Hưng Yên" class="tour-image">
+    <div class="tour-content">
+        <h3 class="tour-title">TOUR DU LỊCH THIÊN NHIÊN HƯNG YÊN 1 NGÀY</h3>
+        <span class="tour-duration"><i class="fas fa-clock"></i> 1 ngày</span>
+        <h4 style="margin: 10px 0 5px; color: var(--dark-brown);">LỊCH TRÌNH TOUR CHI TIẾT</h4>
+        <ul class="tour-highlights">
+            <li>06h00: Khởi hành từ Hà Nội</li>
+            <li>08h00: Tham quan Làng nhãn lồng Hưng Yên</li>
+            <li>09h30: Khám phá Chùa Chuông – di tích nổi tiếng</li>
+            <li>11h00: Tham quan làng nghề làm hương Cao Thôn</li>
+            <li>12h00: Ăn trưa tại nhà hàng địa phương</li>
+            <li>13h30: Dạo thuyền trên sông Hồng, thưởng ngoạn cảnh thiên nhiên</li>
+            <li>15h00: Mua đặc sản nhãn lồng và quà lưu niệm</li>
+            <li>16h00: Khởi hành về Hà Nội</li>
+            <li>17h30: Về đến Hà Nội - Kết thúc tour</li>
+        </ul>
+        
+        <div class="tour-price">Bao gồm:</div>
+        <ul class="tour-highlights">
+            <li>Xe du lịch đời mới đưa đón</li>
+            <li>Hướng dẫn viên chuyên nghiệp</li>
+            <li>01 bữa trưa tiêu chuẩn</li>
+            <li>Vé tham quan theo chương trình</li>
+            <li>Bảo hiểm du lịch, nước uống</li>
+        </ul>
+        
+        <div class="tour-price">Giá tour: 650.000 VNĐ/khách (đoàn từ 20 người)</div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id="cultural-values" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-landmark"></i> GIÁ TRỊ TÂM LINH - VĂN HÓA</h2>
+            <p class="intro-text">Khám phá những giá trị văn hóa - tâm linh đặc sắc dọc theo hành trình Sông Hồng</p>
+            
+            <div class="info-row">
+                <img src="https://static.vinwonders.com/production/hung-yen-o-dau-banner.jpg" alt="Giá trị văn hóa">
+                <div class="info-content">
+                    <h3>DI SẢN VĂN HÓA ĐỘC ĐÁO</h3>
+                    <p>Hành trình tâm linh Sông Hồng là bảo tàng sống của văn hóa Việt, nơi lưu giữ những giá trị tinh thần qua hàng ngàn năm lịch sử. Từ tín ngưỡng thờ Mẫu, thờ Thánh đến các lễ hội dân gian đặc sắc, mỗi điểm đến đều mang trong mình câu chuyện riêng về lịch sử và văn hóa.</p>
+                    <ul>
+                        <li>Tín ngưỡng thờ Mẫu Tam phủ - Di sản văn hóa phi vật thể UNESCO</li>
+                        <li>Nghi lễ hầu đồng, hát chầu văn độc đáo</li>
+                        <li>Múa rồng, diễn xướng dân gian đặc sắc</li>
+                        <li>Kiến trúc đền chùa cổ kính hàng trăm năm tuổi</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tips-container">
+                <div class="tip-card">
+                    <h3><i class="fas fa-water"></i> Sông Hồng - Dòng chảy linh thiêng</h3>
+                    <p>Dòng sông mẹ bồi đắp phù sa và là nơi kết tinh những giá trị tâm linh, tín ngưỡng và văn hóa dân gian đặc sắc của dân tộc Việt Nam.</p>
+                    
+                    <h3 style="margin-top: 15px;"><i class="fas fa-map-marked-alt"></i> Điểm đến tiêu biểu</h3>
+                    <ul style="padding-left: 15px;">
+                        <li><strong>Hà Nội:</strong> Phủ Tây Hồ, chùa Trấn Quốc</li>
+                        <li><strong>Bắc Hưng Yên:</strong> Đền Mẫu Phố Hiến, đền Chử Đồng Tử</li>
+                        <li><strong>Nam Hưng Yên:</strong> Đền Đồng Bằng, chùa Keo</li>
+                        <li><strong>Ninh Bình:</strong> Chùa Bái Đính, Tam Cốc</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><i class="fas fa-mountain"></i> Di sản văn hóa phi vật thể</h3>
+                    <p>Bảo tàng sống của tín ngưỡng dân gian Việt Nam:</p>
+                    <ul style="padding-left: 15px;">
+                        <li>Tín ngưỡng thờ Mẫu Tam phủ</li>
+                        <li>Nghi lễ hầu đồng, hát chầu văn</li>
+                        <li>Múa rồng, diễn xướng dân gian</li>
+                        <li>Nghệ thuật ca trù, hát xẩm</li>
+                        <li>Lễ hội truyền thống đặc sắc</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Giáo dục - Hướng về cội nguồn</h3>
+                    <p>Các hoạt động trải nghiệm ý nghĩa:</p>
+                    <ul style="padding-left: 15px;">
+                        <li>"Một ngày làm người giữ đền"</li>
+                        <li>"Làm lễ rước kiệu, dâng hương"</li>
+                        <li>Học cách gói bánh dày, dâng lễ Mẫu</li>
+                        <li>Tham gia lớp học hát chầu văn</li>
+                        <li>Trải nghiệm nghề thủ công truyền thống</li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+    
+    <section id="booking">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-calendar-check"></i> ĐẶT TOUR &<br>LIÊN HỆ</h2>
+            <p class="intro-text">Liên hệ với chúng tôi để đặt tour hoặc nhận tư vấn về hành trình tâm linh Sông Hồng</p>
+            
+            <div class="info-row">
+                <img src="https://bcp.cdnchinhphu.vn/334894974524682240/2024/6/10/hy-17180215364151096761394.jpg" alt="Đặt tour">
+                <div class="info-content">
+                    <h3>QUY TRÌNH ĐẶT TOUR</h3>
+                    <div class="booking-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Liên hệ đặt tour</h4>
+                                <p>Gọi điện hoặc nhắn tin qua Zalo/SMS để được tư vấn chi tiết về các tour phù hợp với nhu cầu của bạn. Chúng tôi luôn sẵn sàng hỗ trợ 24/7.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Xác nhận thông tin</h4>
+                                <p>Sau khi nhận yêu cầu, chúng tôi sẽ gửi chi tiết tour bao gồm lịch trình, giá cả, dịch vụ bao gồm và các thông tin cần thiết khác qua email hoặc tin nhắn.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Thanh toán & nhận vé</h4>
+                                <p>Thanh toán qua chuyển khoản ngân hàng hoặc tiền mặt tại văn phòng. Sau khi thanh toán, bạn sẽ nhận được vé điện tử và hướng dẫn chi tiết cho chuyến đi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-container">
+                <div class="contact-grid">
+                    <div>
+                        <h3 class="booking-title"><i class="fas fa-phone-alt"></i> THÔNG TIN LIÊN HỆ</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Điện thoại</strong>
+                                <p>0393 100 508 (24/7)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong>
+                                <p>info@hungyentravel.com</p>
+                                <p>support@hungyentravel.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="booking-title"><i class="fas fa-share-alt"></i> KẾT NỐI</h3>
+                        
+
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-zalo"></i>
+                            </div>
+                            <div>
+                                <strong>Zalo</strong>
+                                <p>0393 100 508</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="travel-tips">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> THÔNG TIN HỮU ÍCH</h2>
+            <p class="intro-text">Những lời khuyên giúp bạn có chuyến hành hương tâm linh trọn vẹn nhất</p>
+            
+            <div class="info-row">
+                <img src="https://scontent.iocvnpt.com/resources/portal/Images/TBH/ttxuctien/ck6_606095991.jpg" alt="Thông tin hữu ích">
+                <div class="info-content">
+                    <h3>KINH NGHIỆM DU LỊCH TÂM LINH</h3>
+                    <p>Chuyến đi tâm linh không chỉ là hành trình khám phá mà còn là cơ hội để thanh tịnh tâm hồn. Để có một chuyến đi ý nghĩa và thuận lợi, du khách nên lưu ý những điểm quan trọng sau đây.</p>
+                    <p>Trang phục khi đi lễ cần kín đáo, lịch sự, ưu tiên màu sắc trang nhã. Nên mang theo tiền lẻ để làm lễ, nhưng tránh lạm dụng việc đốt vàng mã. Khi vào khu vực đền chùa, cần giữ trật tự, không nói to, không chỉ trỏ vào tượng thờ. Nên tìm hiểu trước về phong tục, nghi lễ địa phương để tránh vi phạm những điều kiêng kỵ.</p>
+                </div>
+            </div>
+            
+            <div class="tips-container">
+                <div class="tip-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Thời điểm lý tưởng</h3>
+                    
+                    <div class="best-time">
+                        <div class="time-item">
+                            <div class="time-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div>
+                                <strong>Xuân (tháng 1-3)</strong>
+                                <p>Mùa lễ hội lớn, thời tiết mát mẻ, nhiều hoạt động văn hóa đặc sắc</p>
+                            </div>
+                        </div>
+                        
+                        <div class="time-item">
+                            <div class="time-icon">
+                                <i class="fas fa-umbrella-beach"></i>
+                            </div>
+                            <div>
+                                <strong>Hè (tháng 4-6)</strong>
+                                <p>Ngắm đồng lúa chín vàng, thời tiết ấm áp, thuận lợi di chuyển</p>
+                            </div>
+                        </div>
+                        
+                        <div class="time-item">
+                            <div class="time-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <strong>Thu (tháng 9-11)</strong>
+                                <p>Khí hậu mát mẻ, cảnh sắc thiên nhiên đẹp, ít mưa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><i class="fas fa-suitcase"></i> Chuẩn bị hành trang</h3>
+                    <ul style="padding-left: 15px;">
+                        <li>Trang phục kín đáo, lịch sự (ưu tiên màu trầm)</li>
+                        <li>Giày dép thoải mái dễ đi bộ</li>
+                        <li>Tiền lẻ để làm lễ (nên đổi trước)</li>
+                        <li>Máy ảnh hoặc điện thoại (tắt tiếng khi vào đền)</li>
+                        <li>Ô/dù, áo mưa nhẹ phòng mưa nắng</li>
+                        <li>Thuốc cá nhân (nếu cần)</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 15px;"><i class="fas fa-utensils"></i> Ẩm thực đặc sản</h3>
+                    <ul style="padding-left: 15px;">
+                        <li>Bánh cuốn làng Kênh (Bắc Hưng Yên)</li>
+                        <li>Canh cá Quỳnh Côi (Nam Hưng Yên)</li>
+                        <li>Cơm cháy Ninh Bình</li>
+                        <li>Bánh gai Nễ Châu</li>
+                        <li>Chè kho Mễ Sở</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><i class="fas fa-map-marked-alt"></i> Di chuyển dọc tuyến</h3>
+                    <ul style="padding-left: 15px;">
+                        <li><strong>Xe máy:</strong> 100.000-150.000đ/ngày, linh hoạt nhưng mệt</li>
+                        <li><strong>Taxi:</strong> Có sẵn tại các điểm du lịch, giá 10.000-15.000đ/km</li>
+                        <li><strong>Tàu sông:</strong> Trải nghiệm độc đáo, giá 200.000-500.000đ/người</li>
+                        <li><strong>Xe đạp:</strong> Thuê tại các điểm du lịch, 50.000-80.000đ/ngày</li>
+                        <li><strong>Xe bus tour:</strong> Tiện lợi, đưa đón tận nơi</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 15px;"><i class="fas fa-hotel"></i> Lưu trú</h3>
+                    <ul style="padding-left: 15px;">
+                        <li>Khách sạn 3-4 sao: 800.000-1.500.000đ/đêm</li>
+                        <li>Homestay: 300.000-600.000đ/đêm</li>
+                        <li>Nhà nghỉ: 200.000-400.000đ/đêm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer from previous code -->
+    <div class="footer-content">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>THÔNG TIN LIÊN HỆ & ĐÁNH GIÁ</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Hotline: 0977893086</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email: Dothoinn@gmail.com</span>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <div style="margin-bottom: 5px;">Đánh giá website:</div>
+                        <div class="rating-options">
+                            <div class="rating-option">
+                                <input type="radio" id="good" name="rating" value="good" checked>
+                                <label for="good">Tốt</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="average" name="rating" value="average">
+                                <label for="average">Bình thường</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="poor" name="rating" value="poor">
+                                <label for="poor">Không tốt</label>
+                            </div>
+                        </div>
+                        <button type="button" class="submit-btn" onclick="submitFeedback()">Gửi đánh giá</button>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>HÀNH TRÌNH TÂM LINH SÔNG HỒNG</h3>
+                    <p>Kết nối di sản - Lan tỏa hồn Việt</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        &copy; 2025 Bản quyền thuộc về trường THPT Trưng Vương
+    </div>
+    
+    <script>
+        function submitFeedback() {
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            alert(`Cảm ơn bạn đã đánh giá website là "${getRatingText(rating)}"!`);
+            return false;
+        }
+        
+        function getRatingText(value) {
+            switch(value) {
+                case 'good': return 'Tốt';
+                case 'average': return 'Bình thường';
+                case 'poor': return 'Không tốt';
+                default: return '';
+            }
+        }
+        
+        // Video gallery functionality
+        let currentVideoSet = 1;
+        const totalVideoSets = 7;
+        
+        function loadMoreVideos() {
+            if (currentVideoSet <= totalVideoSets) {
+                const nextSet = document.getElementById(`moreVideos${currentVideoSet}`);
+                if (nextSet) {
+                    nextSet.classList.remove('hidden');
+                    currentVideoSet++;
+                    
+                    // Hide button if all videos are loaded
+                    if (currentVideoSet > totalVideoSets) {
+                        document.querySelector('.load-more-btn').style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

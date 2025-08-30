@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gạo Hưng Yên</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #d70202;
+            --light-yellow: #fff3b6;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        
+        .banner-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--light-yellow);
+            color: var(--primary-red);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: white;
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-red);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-red);
+            margin: 15px auto;
+        }
+        
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Layout ảnh và nội dung */
+        .info-row {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-row img {
+            width: 40%;
+            object-fit: cover;
+            display: block;
+            aspect-ratio: 16/9;
+        }
+
+        .info-content {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .info-content h3 {
+            color: var(--primary-red);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 10px;
+        }
+
+        .info-content p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            flex: 0 1 calc(50% - 15px);
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            margin: 20px;
+            flex: 1 1 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+        }
+
+        .vision-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+        
+        .vision-card {
+            flex: 1 1 300px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .vision-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .vision-card h3 {
+            color: var(--primary-red);
+            border-bottom: 2px solid var(--light-yellow);
+            padding-bottom: 10px;
+        }
+
+        /* New styles for rice journey section */
+        .rice-journey {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+        }
+
+        .journey-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .journey-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .journey-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .journey-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .journey-caption {
+            padding: 15px;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .hidden-images {
+            display: none;
+        }
+
+        /* Footer styles */
+        .footer-content {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 30px 0;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: var(--light-yellow);
+            margin: 0 0 15px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--light-yellow);
+            padding-bottom: 10px;
+        }
+        
+        .footer-contact-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+        
+        .footer-contact-item i {
+            margin-right: 8px;
+            color: var(--light-yellow);
+        }
+        
+        .rating-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .rating-option {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+        
+        .rating-option input {
+            margin-right: 5px;
+        }
+        
+        .submit-btn {
+            background-color: white;
+            color: var(--primary-red);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #b30000;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            margin: 20px 0 10px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.3rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--light-yellow);
+        }
+        
+        .iframe-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 520px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .iframe-layer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            pointer-events: auto;
+        }
+
+        @media (max-width: 768px) {
+            .info-row {
+                flex-direction: column;
+            }
+            
+            .info-row img {
+                width: 100%;
+                height: auto;
+            }
+            
+            .gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .gallery-item {
+                flex: 0 1 auto;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .footer-section {
+                flex: 0 0 100%;
+            }
+            
+            .info-row .video-container {
+                flex: 1 1 100%!important;
+                padding-bottom: 56.25%!important; /* 16:9 full width */
+            }
+            
+            .journey-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .info-row .video-container {
+            flex: 0 0 40%;
+            position: relative;
+            padding-bottom: 22.5%; /* 40% * 9/16 = 22.5% */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .info-row .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Iframe trên cùng -->
+    <div class="iframe-layer">
+        <iframe src="https://hungyengenzso.github.io/vi/top"></iframe>
+    </div>
+        
+<script>
+function updatePadding() {
+  const screenWidth = window.innerWidth; 
+  const padding = screenWidth * 0.2; 
+  document.body.style.paddingTop = 70 + padding + "px";
+}
+
+window.addEventListener("load", updatePadding);
+window.addEventListener("resize", updatePadding);
+</script>
+    
+    <section id="overview">
+        <div class="container">
+            <h2 class="section-title" style="padding-bottom: 70px"><i class="fas fa-seedling"></i> ĐỀ XUẤT PHÁT TRIỂN THƯƠNG HIỆU GẠO HƯNG YÊN</h2>
+            
+            <!-- Tiềm năng sản xuất -->
+            <div class="info-row">
+                <div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WorIVrLnthY?si=TAuSPBJbsgzE7bVK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                </div>
+<div class="info-content">
+    <p>Video giới thiệu gạo Thái Bình (nam Hưng Yên) | Làm bởi bạn Đinh Khương Nhung: 12A7: THPT Trưng Vương</p>
+    <h3>Tiềm năng sản xuất lúa Hưng Yên</h3>
+    <p>Hưng Yên gieo cấy khoảng 145.000-155.000 ha lúa mỗi năm với năng suất 130-132 tạ/ha, sản lượng ổn định gần 1 triệu tấn, đáp ứng nhu cầu trong nước và xuất khẩu.</p>
+    <p>Tỉnh áp dụng kỹ thuật tiên tiến như canh tác ngập - đứt xen kẽ, UAV chăm sóc lúa, tiêu chuẩn VietGAP, Organic và có hơn 200 cơ sở chế biến công suất 200.000 tấn/năm.</p>
+</div>
+
+            </div>
+            
+            <!-- Các vùng sản xuất chính -->
+            <div class="info-row">
+                <img src="https://cdnmedia.baotintuc.vn/Upload/OOs7T2PPeyDFX8lb8ayig/files/ruong-dat-120423.jpg" alt="Vùng sản xuất lúa Hưng Yên">
+<div class="info-content">
+    <h3>Các vùng sản xuất lúa chủ lực</h3>
+    <p>Hưng Yên phát triển các vùng lúa chất lượng cao với giống chủ lực TBR39, Bắc Thơm 7 tại Tiền Hải và mô hình lúa hữu cơ - rươi sinh thái ở Đông Hưng.</p>
+    <p>Các huyện Quỳnh Phụ, Vũ Thư, Kiến Xương chuyên sản xuất lúa đặc sản như Tám Xuân, Hom Râu, Nếp Keo, nhiều sản phẩm đạt chứng nhận OCOP.</p>
+</div>
+
+            </div>
+            
+            <!-- Công nghệ sản xuất -->
+            <div class="info-row">
+                <img src="https://i.ex-cdn.com/danviet.vn/files/news/2025/07/02/sap-nhap-thai-binh-voi-hung-yen-3-2052.jpg" alt="Công nghệ sản xuất lúa">
+<div class="info-content">
+    <h3>Công nghệ hiện đại trong sản xuất lúa</h3>
+    <p>Hưng Yên áp dụng kỹ thuật canh tác ngập - đứt xen kẽ, sử dụng UAV phun thuốc, bón phân chính xác, giúp tiết kiệm nước, giảm 30% lượng thuốc, nâng cao hiệu quả sản xuất.</p>
+    <p>Tỉnh triển khai các mô hình VietGAP, Organic cùng hệ thống cảm biến nước - dinh dưỡng và hơn 200 cơ sở chế biến công suất 200.000 tấn/năm để đảm bảo chất lượng gạo.</p>
+</div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id="strategy" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> ĐỊNH HƯỚNG PHÁT TRIỂN THƯƠNG HIỆU</h2>
+            
+            <!-- Cuộc thi video sáng tạo -->
+            <div class="info-row">
+                <img src="https://media.baoquangninh.vn/upload/image/202506/medium/2368503_2368487_38ca5c31d552238d4d108dc8abc7c63c_08465320.jpg" alt="Cuộc thi video sáng tạo">
+<div class="info-content">
+    <h3>1. Chiến dịch truyền thông đa phương tiện</h3>
+    <p>Tổ chức cuộc thi video "Hành trình hạt gạo Hưng Yên" dài 3-5 phút với phụ đề tiếng Anh, giới thiệu quy trình sản xuất hiện đại và câu chuyện người nông dân.</p>
+    <p>Xây dựng khẩu hiệu thương hiệu như "Hưng Yên Rice - Purely Vietnamese. Globally Loved." để sử dụng đồng bộ trên các kênh truyền thông và bao bì sản phẩm.</p>
+</div>
+
+            </div>
+            
+            <!-- Hệ thống nhận diện thương hiệu -->
+            <div class="info-row">
+                <img src="https://img.tinxe.vn/resize/1000x-/2020/05/14/fGkxZ6Rv/vung-que-lua-thai-binh-tinxe-vn1-8a63.jpg" alt="Hệ thống nhận diện thương hiệu">
+<div class="info-content">
+    <h3>2. Hệ thống nhận diện thương hiệu chuyên nghiệp</h3>
+    <p>Thiết kế bộ nhận diện đồng bộ với logo "Hưng Yên Rice - Green Gold of Vietnam" kết hợp hình ảnh bông lúa và sông Hồng, màu xanh, vàng tượng trưng cho phát triển bền vững.</p>
+    <p>Xây dựng bao bì cao cấp có chứng nhận VietGAP, Organic và mã QR truy xuất nguồn gốc, giúp người tiêu dùng dễ dàng nhận biết và tin tưởng sản phẩm.</p>
+</div>
+
+            </div>
+            
+            <!-- Nền tảng số xuất khẩu -->
+            <div class="info-row">
+                <img src="https://cdnsgtt.thesaigontimes.vn/wp-content/uploads/2025/06/thai-binh-9.jpg" alt="Nền tảng số xuất khẩu">
+<div class="info-content">
+    <h3>3. Nền tảng số hỗ trợ xuất khẩu</h3>
+    <p>Xây dựng website thương mại điện tử đa ngữ giới thiệu thương hiệu gạo Hưng Yên, tích hợp đặt hàng trực tuyến và hỗ trợ khách hàng 24/7, tối ưu cho thiết bị di động.</p>
+    <p>Đưa sản phẩm lên các sàn thương mại điện tử quốc tế như Alibaba, Amazon để tiếp cận nhà nhập khẩu và người tiêu dùng toàn cầu.</p>
+</div>
+
+            </div>
+            
+            <!-- Bộ ảnh "Gương mặt gạo Hưng Yên" -->
+            <div class="info-row">
+                <img src="https://vnanet.vn/Data/Articles/2022/06/24/6186547/vna_potal_thai_binh_khan_truong_thu_hoach_lua_xuan_stand.jpg" alt="Gương mặt gạo Hưng Yên">
+<div class="info-content">
+    <h3>4. Chiến dịch hình ảnh "Gương mặt gạo Hưng Yên"</h3>
+    <p>Thực hiện bộ ảnh nghệ thuật tại các cánh đồng lúa, nhà máy chế biến và bếp ăn gia đình để khắc họa hành trình từ hạt thóc đến bát cơm thơm ngon.</p>
+    <p>Lựa chọn đa dạng nhân vật đại diện như nông dân, đầu bếp, học sinh và đại sứ thương hiệu nhằm lan tỏa hình ảnh gạo Hưng Yên đến nhiều nhóm đối tượng.</p>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-bowl-rice"></i> MÙA LÚA HƯNG YÊN</h2>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://cdnsgtt.thesaigontimes.vn/wp-content/uploads/2024/10/thai-binh-6.jpg" alt="Lãnh đạo tỉnh kiểm tra đồng ruộng">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://sudospaces.com/hoaphat-com-vn/uploads/2-30.jpg" alt="Lãnh đạo tỉnh thăm nhà máy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Rice Journey Section from code 1 -->
+    <section class="rice-journey">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-route"></i> HÀNH TRÌNH HẠT GẠO HƯNG YÊN</h2>
+            <p class="intro-text">Từ cánh đồng đến bàn ăn thế giới</p>
+            
+            <div class="journey-gallery" id="journeyGallery">
+                <div class="journey-item">
+                    <img src="https://i.ibb.co/nMHDTV9W/z6838295472486-3d18b86005d674fa98142fb0565f2f69.jpg" alt="Hạt giống chất lượng" style="height:70%">
+                    <div class="journey-caption">Người Trung Quốc trải nghiệm gạo Hưng Yên</div>
+                </div>
+                <div class="journey-item">
+                    <img src="https://i.ibb.co/5gKkRsXp/image.png" alt="Canh tác hiện đại">
+                    <div class="journey-caption">Người Hàn quốc trải nghiệm gạo Hưng Yên</div>
+                </div>
+                <div class="journey-item">
+                    <img src="https://i.ibb.co/gLK227yN/image.png" alt="Thu hoạch lúa">
+                    <div class="journey-caption">Người Nhật Bản trải nghiệm gạo Hưng Yên</div>
+                </div>
+                <div class="journey-item">
+                    <img src="https://i.ibb.co/fd5yYdwz/image.png" alt="Gạo Hưng Yên đến thế giới">
+                    <div class="journey-caption">Người Việt Nam trải nghiệm gạo Hưng Yên</div>
+                </div>
+                <div class="journey-item">
+                    <img src="https://i.ibb.co/TBPpk8vS/z6911557292624-2f48e4fdc33c637b9b8cb4af0f47dcf8.jpg" alt="Gạo Hưng Yên đến thế giới">
+                    <div class="journey-caption">Người Việt Nam trải nghiệm gạo Hưng Yên</div>
+                </div>
+                <div class="journey-item">
+                    <img src="https://i.ibb.co/YgZqPS1/z6911560979992-e4cddfb7d22f04f39fc398ad3c144e78.jpg" alt="Gạo Hưng Yên đến thế giới">
+                    <div class="journey-caption">Người Việt Nam trải nghiệm gạo Hưng Yên</div>
+                </div>
+                <!-- Hidden images will be added here by JavaScript -->
+                <div id="hiddenImagesContainer" class="hidden-images"></div>
+            </div>
+            
+            <div class="load-more-container">
+                <button class="btn" id="loadMoreBtn">Xem thêm</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="leader">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-user-tie"></i> LÃNH ĐẠO TỈNH CHỈ ĐẠO</h2>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://cdn.nhandan.vn/images/1ef398c4e2fb4bf07980a2ded785b3efb22a74c3b1c89eac8b349697e514a915685457efba553e3011197b041dc7e792c2381094306107c33e4c998a37d06158/img-3813-876.jpg" alt="Lãnh đạo tỉnh kiểm tra đồng ruộng">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://thaibinh.gov.vn/upload/80571/fck/files/42de0531341460772ee28c1b78f5bc36.jpg" alt="Lãnh đạo tỉnh thăm nhà máy">
+                </div>
+            </div>
+            
+            <!-- Các hoạt động chỉ đạo -->
+            <div class="info-row">
+                <img src="https://media.baothaibinh.com.vn/upload/news/3_2023/cacdongchilanhdao_14235002032023.jpg" alt="Lãnh đạo tỉnh chỉ đạo sản xuất lúa">
+<div class="info-content">
+    <h3>Các hoạt động chỉ đạo phát triển thương hiệu gạo</h3>
+    <p>Lãnh đạo tỉnh thường xuyên kiểm tra mô hình sản xuất, thị sát nhà máy giống và đồng ruộng, chỉ đạo áp dụng tiến bộ kỹ thuật để nâng cao chất lượng gạo.</p>
+    <p>Tỉnh thành lập Ban chỉ đạo phát triển thương hiệu gạo, xây dựng kế hoạch tổng thể từ sản xuất đến tiêu thụ và đẩy mạnh xúc tiến thương mại.</p>
+</div>
+
+            </div>
+        </div>
+    </section>
+    
+    <div class="footer-content">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>THÔNG TIN LIÊN HỆ & ĐÁNH GIÁ</h3>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Hotline: 0977893086</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email: Dothoinn@gmail.com</span>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <div style="margin-bottom: 10px;">Đánh giá website:</div>
+                        <div class="rating-options">
+                            <div class="rating-option">
+                                <input type="radio" id="good" name="rating" value="good" checked>
+                                <label for="good">Tốt</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="average" name="rating" value="average">
+                                <label for="average">Bình thường</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="poor" name="rating" value="poor">
+                                <label for="poor">Không tốt</label>
+                            </div>
+                        </div>
+                        <button type="button" class="submit-btn" onclick="submitFeedback()">Gửi đánh giá</button>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>HƯNG YÊN MỚI</h3>
+                    <p>Trang thông tin điện tử giới thiệu về tỉnh Hưng Yên sau khi sát nhập với Thái Bình</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        &copy; 2025 Bản quyền thuộc về trường THPT Trưng Vương
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tạo 36 ảnh với đường dẫn theo yêu cầu
+            const totalImages = 36;
+            const imagesPerLoad = 6;
+            let loadedImages = 0;
+            const hiddenImagesContainer = document.getElementById('hiddenImagesContainer');
+            const journeyGallery = document.getElementById('journeyGallery');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            
+            // Tạo các ảnh ẩn ban đầu
+            for (let i = 1; i <= totalImages; i++) {
+                const imgNumber = i.toString().padStart(3, '0');
+                const imgUrl = `https://hungyengenzso.github.io/database/anh_${imgNumber}.jpg`;
+                
+                const journeyItem = document.createElement('div');
+                journeyItem.className = 'journey-item';
+                journeyItem.innerHTML = `<img src="${imgUrl}" alt="Hành trình gạo Hưng Yên ${i}">`;
+                
+                hiddenImagesContainer.appendChild(journeyItem);
+            }
+            
+            // Xử lý sự kiện click nút Xem thêm
+            loadMoreBtn.addEventListener('click', function() {
+                const hiddenItems = hiddenImagesContainer.querySelectorAll('.journey-item');
+                const itemsToShow = Math.min(imagesPerLoad, hiddenItems.length);
+                
+                for (let i = 0; i < itemsToShow; i++) {
+                    if (hiddenItems[i]) {
+                        journeyGallery.appendChild(hiddenItems[i]);
+                        loadedImages++;
+                    }
+                }
+                
+                // Ẩn nút khi đã hiển thị hết ảnh
+                if (loadedImages >= totalImages) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+            
+            // Tự động click lần đầu để load 6 ảnh đầu tiên
+            setTimeout(() => {
+                loadMoreBtn.click();
+            }, 100);
+        });
+        
+        function submitFeedback() {
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            alert(`Cảm ơn bạn đã đánh giá: ${rating === 'good' ? 'Tốt' : rating === 'average' ? 'Bình thường' : 'Không tốt'}`);
+        }
+    </script>
+</body>
+</html>
